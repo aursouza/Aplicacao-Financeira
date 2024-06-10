@@ -1,2 +1,2 @@
-# Aplica-o-Financeira
-Repositorio criado para a prática em grupo do Curso Formação Dev da Cod3r
+# Aplicação-Financeira
+Repositório criado para a prática em grupo do Curso Formação Dev da Cod3r
