@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import image from "../../public/image/avatar.png";
+import img from "../../public/image/avatar.png";
 
 interface AvatarProps {
   src?: string;
@@ -12,7 +12,7 @@ interface AvatarProps {
 export default function Avatar(props: AvatarProps) {
   return (
     <div>
-      <Image src={image} width={40} height={40} alt="Image Avatar" priority />
+      <Image src={img} width={40} height={40} alt="Image Avatar" priority />
     </div>
   );
 }
