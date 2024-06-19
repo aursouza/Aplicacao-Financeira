@@ -6,6 +6,13 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    { pattern: /^gap-/ },
+    { pattern: /^w-/ },
+    { pattern: /^h-/ },
+    { pattern: /^text-/ },
+    { pattern: /^bg-/ },
+  ],
   theme: {
     extend: {
       colors: {
