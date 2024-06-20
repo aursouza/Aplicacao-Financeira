@@ -24,10 +24,52 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+
+  font-family: var(--font-league);
+}
+
+h1 {
+  font-family: var(--font-archivo);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply py-2 px-5 text-white rounded-full hover:bg-transparent hover:border-collapse border-solid border-4 border-transparent focus:outline-none;
+  }
+
+  .btn-primary {
+    @apply btn;
+    @apply bg-primary hover:border-primary;
+  }
+
+  .btn-secondary {
+    @apply btn;
+    @apply bg-secondary hover:border-secondary;
+  }
+
+  .btn-gray {
+    @apply btn;
+    @apply bg-gray hover:border-gray;
+  }
+
+  .btn-lightGray {
+    @apply btn;
+    @apply bg-lightGray hover:border-lightGray;
+  }
+
+  .btn-red {
+    @apply btn;
+    @apply bg-red hover:border-red;
+  }
+
+  .btn-green {
+    @apply btn;
+    @apply bg-green hover:border-green;
   }
 }
