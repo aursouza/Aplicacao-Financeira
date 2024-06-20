@@ -15,7 +15,7 @@ export const archivo = Archivo_Black({
 
 export const league = League_Spartan({
   subsets: ["latin"],
-  weight: ["400", "900"],
+  weight: ["100", "200", "300", "400", "500", "900"],
   variable: "--font-league",
   display: "swap",
 });
