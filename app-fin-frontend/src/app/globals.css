@@ -36,9 +36,37 @@ h1 {
   .text-balance {
     text-wrap: balance;
   }
+
+  .text-inter {
+    font-family: var(--font-inter);
+  }
 }
 
 @layer components {
+  .text-Consolidado {
+    @apply text-green;
+  }
+
+  .text-Pendente {
+    @apply text-orange;
+  }
+
+  .text-Cancelado {
+    @apply text-red;
+  }
+
+  .bg-Consolidado {
+    @apply bg-darkGreen;
+  }
+
+  .bg-Pendente {
+    @apply bg-darkOrange;
+  }
+
+  .bg-Cancelado {
+    @apply bg-darkRed;
+  }
+
   .btn {
     @apply py-2 px-5 text-white rounded-full hover:bg-transparent hover:border-collapse border-solid border-4 border-transparent focus:outline-none;
   }
