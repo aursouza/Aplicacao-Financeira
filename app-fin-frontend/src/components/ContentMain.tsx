@@ -3,7 +3,7 @@ import ContentEmpty from "./ContentEmpty";
 import EntryItem from "./EntryItem";
 import Header from "./Header";
 
-import { entradas } from "../utils/mockData";
+import { items } from "../utils/mockData";
 
 interface MainContentProps {
   isEmpty: boolean;
@@ -11,8 +11,6 @@ interface MainContentProps {
 
 export default function MainContent(props: MainContentProps) {
   const { isEmpty } = props;
-
-  const items = entradas;
 
   return (
     <ContentArea
@@ -25,10 +23,12 @@ export default function MainContent(props: MainContentProps) {
       <div className="flex flex-col gap-2 overflow-auto mt-5 sm:h-screen">
         {isEmpty && <ContentEmpty />}
 
-        {entradas.map((item) => {
+        {items.map((item) => {
           return (
             <EntryItem
               key={item.id}
+              idEntry={item.id}
+              dataEntry={item.data}
               valueEntry={item.value}
               statusEntry={item.status}
               typeEntry={item.type}
