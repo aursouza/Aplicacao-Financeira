@@ -4,7 +4,7 @@ interface LogoProps {
 
 export default function Logo(props: LogoProps) {
   return (
-    <div className="w-[100px]">
+    <div className="w-[100px] md:w-[50px]">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"

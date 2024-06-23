@@ -12,7 +12,14 @@ interface AvatarProps {
 export default function Avatar(props: AvatarProps) {
   return (
     <div>
-      <Image src={img} width={40} height={40} alt="Image Avatar" priority />
+      <Image
+        src={img}
+        width={40}
+        height={40}
+        alt="Image Avatar"
+        className="md:w-[30px]"
+        priority
+      />
     </div>
   );
 }
