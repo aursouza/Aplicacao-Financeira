@@ -55,6 +55,22 @@ h1 {
     @apply text-red;
   }
 
+  .text-Visualização {
+    @apply text-lightGray;
+  }
+
+  .bg-Visualização {
+    @apply bg-[#222224];
+  }
+
+  .text-Edição {
+    @apply text-orange;
+  }
+
+  .bg-Edição {
+    @apply bg-darkOrange;
+  }
+
   .bg-Consolidado {
     @apply bg-darkGreen;
   }

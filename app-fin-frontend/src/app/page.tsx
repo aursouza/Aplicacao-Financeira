@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <ContentArea gap={0} className="h-screen bg-black">
       <Bar />
-      <MainContent isEmpty={false} />
+      <MainContent />
     </ContentArea>
   );
 }
