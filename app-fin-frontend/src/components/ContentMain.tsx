@@ -35,7 +35,7 @@ export default function MainContent(props: MainContentProps) {
       center
       className="bg-black w-full h-screen p-5 sm:mt-[75px] sm:justify-start"
     >
-      <Header />
+      {/* <Header /> */}
 
       <div className="flex flex-col gap-2 overflow-auto mt-5 sm:h-screen">
         {/* {renderContent(items)} */}

@@ -55,6 +55,18 @@ h1 {
     @apply text-red;
   }
 
+  .bg-Consolidado {
+    @apply bg-darkGreen;
+  }
+
+  .bg-Pendente {
+    @apply bg-darkOrange;
+  }
+
+  .bg-Cancelado {
+    @apply bg-darkRed;
+  }
+
   .text-Visualização {
     @apply text-lightGray;
   }
@@ -69,18 +81,6 @@ h1 {
 
   .bg-Edição {
     @apply bg-darkOrange;
-  }
-
-  .bg-Consolidado {
-    @apply bg-darkGreen;
-  }
-
-  .bg-Pendente {
-    @apply bg-darkOrange;
-  }
-
-  .bg-Cancelado {
-    @apply bg-darkRed;
   }
 
   .btn {
