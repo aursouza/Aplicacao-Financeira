@@ -24,20 +24,4 @@ export const items: any[] = [
     value: 72.03,
     status: ["Consolidado"],
   },
-  {
-    id: "#RI0C381",
-    data: "2024-09-13T00:00:00Z",
-    description: "Água",
-    type: "despesa",
-    value: 72.03,
-    status: ["Consolidado"],
-  },
-  {
-    id: "#RI0C381",
-    data: "2024-09-13T00:00:00Z",
-    description: "Água",
-    type: "despesa",
-    value: 72.03,
-    status: ["Pendente"],
-  },
 ];

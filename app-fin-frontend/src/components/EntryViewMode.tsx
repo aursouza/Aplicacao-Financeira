@@ -26,7 +26,8 @@ export default function EntryViewMode(props: EntryViewModeProps) {
 
       <div className="flex justify-start items-baseline flex-wrap w-[730px] p-6 md:p-4 px-12 bg-lightBlack gap-5 rounded-xl md:w-full">
         <div className="flex w-full justify-between md:flex-col-reverse gap-5">
-          <div className="flex items-start">
+          <div className="flex flex-col items-start">
+            <span className="text-bold text-inter font-bold">#RI0C381</span>
             <input
               placeholder="Descrição do registro"
               className="appearance-none bg-transparent border-b border-lightGray border-opacity-30
@@ -52,9 +53,12 @@ export default function EntryViewMode(props: EntryViewModeProps) {
         </div>
       </div>
 
-      <div className="flex justify-start w-[730px] p-6 md:p-4 bg-lightBlack gap-3 rounded-xl md:w-full">
-        <button className="btn-primary md:w-1/2">Salvar</button>
-        <button className="btn-gray  md:w-1/2">Cancelar</button>
+      <div className="flex w-[730px] p-6 md:p-4 bg-lightBlack gap-3 rounded-xl md:w-full md:flex-col">
+        <button className="btn-primary">Salvar</button>
+        <button className="btn-gray">Cancelar</button>
+        <button className="flex btn-red ml-auto md:ml-0 md:justify-center">
+          Excluir
+        </button>
       </div>
     </div>
   );
