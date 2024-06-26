@@ -10,7 +10,7 @@ interface EntryItemProps {
   descriptionEntry: string;
   typeEntry: string;
   valueEntry: number;
-  statusEntry: string;
+  statusEntry: string[];
 }
 
 export default function EntryItem(props: EntryItemProps) {

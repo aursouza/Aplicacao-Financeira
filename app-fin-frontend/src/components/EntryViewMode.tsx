@@ -1,11 +1,27 @@
-import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react";
+import { IconChevronLeft } from "@tabler/icons-react";
 import StatusItem from "./StatusItem";
+import Link from "next/link";
+import SelectEntryRegistry from "./SelectEntryRegistry";
+import InputRegistry from "./InputRegistry";
 
-export default function EntryViewMode() {
+const mode: string[] = ["Visualização", "Edição"];
+
+const status: string[] = ["Consolidado", "Pendente", "Cancelado"];
+
+const type: string[] = ["despesa", "receita"];
+
+interface EntryViewModeProps {}
+
+export default function EntryViewMode(props: EntryViewModeProps) {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 items-start">
+      <Link href={""} className="flex text-lightGray text-xl">
+        <IconChevronLeft size={25} className="mr-1 " />
+        <span>Voltar</span>
+      </Link>
+
       <div className="flex justify-start items-baseline w-[730px] p-6 md:p-4 px-12 bg-lightBlack gap-3 rounded-xl md:w-full md:justify-between">
-        Modo <StatusItem status="Visualização" />
+        Modo <StatusItem status={mode} />
       </div>
 
       <div className="flex justify-start items-baseline flex-wrap w-[730px] p-6 md:p-4 px-12 bg-lightBlack gap-5 rounded-xl md:w-full">
@@ -13,45 +29,26 @@ export default function EntryViewMode() {
           <div className="flex items-start">
             <input
               placeholder="Descrição do registro"
-              className="appearance-none bg-transparent border-b border-lightGray
+              className="appearance-none bg-transparent border-b border-lightGray border-opacity-30
                text-white text-sm font-semibold
                placeholder:text-gray placeholder:font-bold md:w-full"
             ></input>
           </div>
           <div className="flex flex-col items-end md:flex-row md:justify-start md:items-center">
             <span className="text-gray text-xs md:mr-2">Status Registro</span>
-            <StatusItem status="Consolidado" />
+            <StatusItem status={status} />
           </div>
         </div>
 
         <div className="flex w-full justify-between md:flex-col gap-5">
           <div className="flex flex-col">
-            <span className="text-gray text-xs">Data do registro</span>
-            <input
-              className="appearance-none bg-transparent border-b border-lightGray
-               text-white text-sm font-semibold"
-            ></input>
+            <InputRegistry label="Data Registro" />
           </div>
           <div className="flex flex-col">
             <span className="text-gray text-xs">Tipo de registro</span>
-            <div className="flex justify-center border-b border-lightGray ">
-              <IconTrendingUp
-                className="text-green mr-1"
-                stroke={2}
-                size={15}
-              />
-              <select className="bg-transparent appearance-none font-semibold text-sm text-center uppercase text-green">
-                <option value="">Receita</option>
-              </select>
-            </div>
+            <SelectEntryRegistry input={type} />
           </div>
-          <div className="flex flex-col">
-            <span className="text-gray text-xs">Valor Registro</span>
-            <input
-              className="appearance-none bg-transparent border-b border-lightGray
-               text-white text-sm font-semibold"
-            ></input>
-          </div>
+          <InputRegistry label="Valor Registro" />
         </div>
       </div>
 
