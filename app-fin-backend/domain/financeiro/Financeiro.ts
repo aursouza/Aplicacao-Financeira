@@ -5,7 +5,7 @@ import Tipo from '../shared/Tipo'
 import Status from '../shared/Status'
 
 export type FinanceiroProps = {
-  id: string
+  id?: string
   tipo: Tipo
   valor: Valor
   status: Status
@@ -13,29 +13,31 @@ export type FinanceiroProps = {
   descricao: Descricao
 }
 
+export type FinanceirocreateProps = {
+  id?: string
+  tipo: string
+  valor: number
+  status: boolean
+  data: string
+  descricao: string
+}
+
 export default class Financeiro {
   private constructor(private props: FinanceiroProps) {}
 
-  public static create(
-    id: string,
-    tipo: string,
-    valor: number,
-    status: boolean,
-    data: Date,
-    descricao: string
-  ) {
+  public static create(props: FinanceirocreateProps) {
     return new Financeiro({
-      id: crypto.randomUUID().toString(),
-      tipo: new Tipo(tipo),
-      valor: new Valor(valor),
-      status: new Status(status),
-      data: new Data(data),
-      descricao: new Descricao(descricao),
+      id: props.id ?? crypto.randomUUID().toString(),
+      tipo: new Tipo(props.tipo),
+      valor: new Valor(props.valor),
+      status: new Status(props.status),
+      data: new Data(props.data),
+      descricao: new Descricao(props.descricao),
     })
   }
 
-  public static with(props: FinanceiroProps) {
-    return new Financeiro(props)
+  public static with(props: FinanceirocreateProps) {
+    return Financeiro.create(props)
   }
 
   public get id() {
