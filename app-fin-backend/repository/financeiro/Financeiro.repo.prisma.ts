@@ -1,11 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import Financeiro from 'domain/financeiro/Financeiro'
 import { FinanceiroGateway } from 'repository/gateway/FinanceiroGateway'
-import Data from 'domain/shared/Data'
-import Descricao from 'domain/shared/Descricao'
-import Status from 'domain/shared/Status'
-import Tipo from 'domain/shared/Tipo'
-import Valor from 'domain/shared/Valor'
 
 export class FinanceiroRepoPrisma implements FinanceiroGateway {
   private constructor(private readonly prismaClient: PrismaClient) {}
@@ -31,11 +26,11 @@ export class FinanceiroRepoPrisma implements FinanceiroGateway {
     })
     return Financeiro.with({
       id: retorno.id,
-      tipo: new Tipo(retorno.tipo),
-      valor: new Valor(retorno.Valor),
-      status: new Status(retorno.status),
-      data: new Data(retorno.data),
-      descricao: new Descricao(retorno.descricao),
+      tipo: retorno.tipo,
+      valor: retorno.Valor,
+      status: retorno.status,
+      data: retorno.data.toISOString(),
+      descricao: retorno.descricao,
     })
   }
   delete(id: string): Promise<void> {
@@ -43,7 +38,7 @@ export class FinanceiroRepoPrisma implements FinanceiroGateway {
   }
   async save(financeiro: Financeiro): Promise<void> {
     const dados = {
-      id: financeiro.id,
+      id: financeiro.id!,
       tipo: financeiro.tipo.value,
       Valor: financeiro.valor.value,
       status: financeiro.status.value,

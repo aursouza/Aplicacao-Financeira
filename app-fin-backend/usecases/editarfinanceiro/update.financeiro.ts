@@ -9,11 +9,11 @@ import { Usecase } from 'usecases/usecase'
 
 export type UpdateFinanceiroInputDto = {
   id: string
-  tipox: string
-  valorx: number
-  statusx: boolean
-  datax: Date
-  descricaox: string
+  tipo: string
+  valor: number
+  status: boolean
+  data: string
+  descricao: string
 }
 
 export type UpdateFinanceiroOutputDto = {
@@ -36,17 +36,12 @@ export class UpdateFinanceiro
 
   async execute({
     id,
-    tipox,
-    valorx,
-    statusx,
-    datax,
-    descricaox,
+    tipo,
+    valor,
+    status,
+    data,
+    descricao,
   }: UpdateFinanceiroInputDto): Promise<UpdateFinanceiroOutputDto> {
-    const tipo = new Tipo(tipox)
-    const valor = new Valor(valorx)
-    const status = new Status(statusx)
-    const data = new Data(datax)
-    const descricao = new Descricao(descricaox)
     const registro = Financeiro.with({
       id,
       tipo,
@@ -62,7 +57,7 @@ export class UpdateFinanceiro
 
   private presentOutput(financas: Financeiro): UpdateFinanceiroOutputDto {
     const output: UpdateFinanceiroOutputDto = {
-      id: financas.id,
+      id: financas.id!,
       tipo: financas.tipo.value,
       valor: financas.valor.value,
       status: financas.status.value,

@@ -7,7 +7,7 @@ export type CreateFinanceiroInputDto = {
   tipo: string
   valor: number
   status: boolean
-  data: Date
+  data: string
   descricao: string
 }
 
@@ -32,7 +32,14 @@ export class CreateFinanceiroUsecase
     data,
     descricao,
   }: CreateFinanceiroInputDto): Promise<CreateFinanceiroOutputDto> {
-    const registro = Financeiro.create(id, tipo, valor, status, data, descricao)
+    const registro = Financeiro.create({
+      id,
+      tipo,
+      valor,
+      status,
+      data,
+      descricao,
+    })
     await this.finGateway.save(registro)
     const output = this.presentOutput(registro)
     return output
@@ -40,7 +47,7 @@ export class CreateFinanceiroUsecase
 
   private presentOutput(financas: Financeiro): CreateFinanceiroOutputDto {
     const output: CreateFinanceiroOutputDto = {
-      id: financas.id,
+      id: financas.id!,
     }
     return output
   }
