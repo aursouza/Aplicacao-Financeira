@@ -8,8 +8,21 @@ export default class FinanceiroRepoPrisma implements FinanceiroGateway {
   public static create(prismaFin: PrismaClient) {
     return new FinanceiroRepoPrisma(prismaFin)
   }
-  list(): Promise<Financeiro[]> {
-    throw new Error('Method not implemented.')
+  async list(): Promise<Financeiro[]> {
+    const itens = await this.prismaClient.financeiro.findMany()
+
+    const financeiroList = itens.map((p) => {
+      const reg = Financeiro.with({
+        id: p.id,
+        tipo: p.tipo,
+        valor: p.Valor,
+        status: p.status,
+        data: new Date(p.data).toISOString(),
+        descricao: p.descricao,
+      })
+      return reg
+    })
+    return financeiroList
   }
   async update(financeiro: Financeiro): Promise<Financeiro> {
     const dados = {

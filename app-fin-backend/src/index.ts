@@ -6,15 +6,28 @@ import { CreateFinanceiroUsecase } from 'usecases/createfinanceiro/create.financ
 import { CreateFinanceiroRoute } from 'infra/api/routes/financeiro/create.financeiro.express.route'
 import { UpdateFinanceiroUsecase } from 'usecases/editarfinanceiro/update.financeiro'
 import { UpdateFinanceiroRoute } from 'infra/api/routes/financeiro/update.financeiro.express.route'
+import { DeleteFinanceiroUsecase } from 'usecases/excluirfinanceiro/delete.financeiro'
+import { DeleteFinanceiroRoute } from 'infra/api/routes/financeiro/delete.financeiro.express.route'
+import { ListarFinanceiroUsecase } from 'usecases/Listarfinanceiro/listarfinanceiro'
+import { ListarFinanceiroRoute } from 'infra/api/routes/financeiro/listar.financeiro.express.route'
 
 function main() {
   const aRepository = FinanceiroRepoPrisma.create(prisma)
   const createFinanceiroUsecase = CreateFinanceiroUsecase.create(aRepository)
   const updateFinanceiroUsecase = UpdateFinanceiroUsecase.create(aRepository)
+  const deleteFinanceiroUsecase = DeleteFinanceiroUsecase.create(aRepository)
+  const listarFinanceiroUsecase = ListarFinanceiroUsecase.create(aRepository)
   const createRoute = CreateFinanceiroRoute.create(createFinanceiroUsecase)
   const updateRoute = UpdateFinanceiroRoute.create(updateFinanceiroUsecase)
+  const deleteRoute = DeleteFinanceiroRoute.create(deleteFinanceiroUsecase)
+  const listarRoute = ListarFinanceiroRoute.create(listarFinanceiroUsecase)
   const port = 8000
-  const api = ExpressAdapter.create([createRoute, updateRoute])
+  const api = ExpressAdapter.create([
+    createRoute,
+    updateRoute,
+    deleteRoute,
+    listarRoute,
+  ])
   api.start(port)
 }
 
