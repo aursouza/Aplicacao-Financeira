@@ -20,13 +20,13 @@ export type UpdateFinanceiroOutputDto = {
   descricao: string
 }
 
-export class UpdateFinanceiro
+export class UpdateFinanceiroUsecase
   implements Usecase<UpdateFinanceiroInputDto, UpdateFinanceiroOutputDto>
 {
   private constructor(private readonly finGateway: FinanceiroGateway) {}
 
   public static create(finGateway: FinanceiroGateway) {
-    return new UpdateFinanceiro(finGateway)
+    return new UpdateFinanceiroUsecase(finGateway)
   }
 
   async execute({

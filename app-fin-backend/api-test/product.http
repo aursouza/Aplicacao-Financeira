@@ -26,3 +26,16 @@ Content-Type: application/json
       "data": "2024-01-01",
       "descricao": "Conta de Luz"
 }
+
+###
+PUT http://localhost:8000/altera HTTP/1.1
+Content-Type: application/json
+
+{
+      "id" : "24799861",
+      "tipo": "despesa",
+      "valor": 200.00,
+      "status": true,
+      "data": "2024-01-01",
+      "descricao": "Conta de Luz"
+}
