@@ -1,10 +1,5 @@
 import Financeiro from 'domain/financeiro/Financeiro'
-import Data from 'domain/shared/Data'
-import Descricao from 'domain/shared/Descricao'
-import Status from 'domain/shared/Status'
-import Tipo from 'domain/shared/Tipo'
-import Valor from 'domain/shared/Valor'
-import { FinanceiroGateway } from 'repository/gateway/FinanceiroGateway'
+import { FinanceiroGateway } from 'infra/repository/gateway/FinanceiroGateway'
 import { Usecase } from 'usecases/usecase'
 
 export type UpdateFinanceiroInputDto = {
