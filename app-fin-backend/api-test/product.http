@@ -39,3 +39,30 @@ Content-Type: application/json
       "data": "2024-01-01",
       "descricao": "Conta de Luz"
 }
+
+###
+PUT http://localhost:8000/altera HTTP/1.1
+Content-Type: application/json
+
+{
+      "id" : "2347861",
+      "tipo": "receita",
+      "valor": 4000.00,
+      "status": true,
+      "data": "2024-01-01",
+      "descricao": "Salario"
+}
+
+###
+
+POST http://localhost:8000/registra HTTP/1.1
+Content-Type: application/json
+
+{
+      "id" : "45647861",
+      "tipo": "receita",
+      "valor": 1600.00,
+      "status": true,
+      "data": "2024-01-01",
+      "descricao": "Venda de celular"
+    }

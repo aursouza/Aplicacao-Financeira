@@ -20,16 +20,18 @@ export default class FinanceiroRepoPrisma implements FinanceiroGateway {
       data: financeiro.data.value.toISOString(),
       descricao: financeiro.descricao.value,
     }
+
     const retorno = await this.prismaClient.financeiro.update({
       where: { id: financeiro.id },
       data: dados,
     })
+    console.log(retorno)
     return Financeiro.with({
       id: retorno.id,
       tipo: retorno.tipo,
       valor: retorno.Valor,
       status: retorno.status,
-      data: retorno.data.toISOString(),
+      data: new Date(retorno.data).toISOString(),
       descricao: retorno.descricao,
     })
   }
