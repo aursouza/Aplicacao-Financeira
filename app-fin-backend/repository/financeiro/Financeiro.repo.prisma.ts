@@ -33,8 +33,8 @@ export class FinanceiroRepoPrisma implements FinanceiroGateway {
       descricao: retorno.descricao,
     })
   }
-  delete(id: string): Promise<void> {
-    throw new Error('Method not implemented.')
+  async delete(id: string): Promise<void> {
+    await this.prismaClient.financeiro.delete({ where: { id } })
   }
   async save(financeiro: Financeiro): Promise<void> {
     const dados = {
