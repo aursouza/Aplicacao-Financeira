@@ -1,4 +1,4 @@
-import { FinanceiroGateway } from 'repository/gateway/FinanceiroGateway'
+import { FinanceiroGateway } from 'infra/repository/gateway/FinanceiroGateway'
 import { Usecase } from 'usecases/usecase'
 
 export type DeleteFinanceiroInputDto = {
