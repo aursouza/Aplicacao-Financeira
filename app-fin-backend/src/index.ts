@@ -1,10 +1,17 @@
-import ExpressAdapter from '../infra/http/ExpressAdapter'
+import FinanceiroRepoPrisma from 'infra/repository/financeiro/Financeiro.repo.prisma'
+import ExpressAdapter from 'infra/http/ExpressAdapter'
+import { prisma } from 'framework/prisma/prisma'
 
-const app = new ExpressAdapter()
-const port = 3000
+import { CreateFinanceiroUsecase } from 'usecases/createfinanceiro/create.financeiro'
+import { CreateFinanceiroRoute } from 'infra/api/routes/financeiro/create.financeiro.express.route'
 
-app.on('get', '/', async (req, res, next) => {
-  res.send('Blz!!! Funcionando!')
-})
+function main() {
+  const aRepository = FinanceiroRepoPrisma.create(prisma)
+  const createFinanceiroUsecase = CreateFinanceiroUsecase.create(aRepository)
+  const createRoute = CreateFinanceiroRoute.create(createFinanceiroUsecase)
+  const port = 8000
+  const api = ExpressAdapter.create([createRoute])
+  api.start(port)
+}
 
-app.listen(port)
+main()

@@ -1,42 +1,33 @@
-import express, {
-  type Request,
-  type Response,
-  type NextFunction,
-} from 'express'
-import { IHttpServer } from './IHttpServer'
+import express from 'express'
+import { Route } from 'infra/api/routes/route'
+import { Api } from 'infra/api/api'
 
-export default class ExpressAdapter implements IHttpServer {
+export default class ExpressAdapter implements Api {
   private readonly app: any
-  constructor() {
+  private constructor(routes: Route[]) {
     this.app = express()
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
-  }
-  on(
-    method: string,
-    url: string,
-    callback: (req: Request, res: Response, next: NextFunction) => void
-  ): void {
-    this.app[method](
-      url,
-      callback,
-      async (req: Request, res: Response, next: NextFunction) => {
-        try {
-          const output = await callback(req, res, next)
-          res.json(output)
-        } catch (error: any) {
-          next(error)
-        }
-      }
-    )
+    this.addRoutes(routes)
   }
 
-  public listen(port: number): void {
-    this.app.listen(port)
-    console.log(`O servidor está rodando na porta ${port}`)
+  public static create(routes: Route[]) {
+    return new ExpressAdapter(routes)
   }
 
-  public close(): void {
-    this.app.close()
+  public start(port: number): void {
+    this.app.listen(port, () => {
+      console.log(`Server running on port ${port}`)
+    })
+  }
+
+  private addRoutes(routes: Route[]) {
+    routes.forEach((route) => {
+      const path = route.getPath()
+      const method = route.getMethod()
+      const handler = route.getHandler()
+
+      this.app[method](path, handler)
+    })
   }
 }
