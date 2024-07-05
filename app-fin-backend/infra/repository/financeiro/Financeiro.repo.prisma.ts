@@ -2,10 +2,10 @@ import { PrismaClient } from '@prisma/client'
 import Financeiro from 'domain/financeiro/Financeiro'
 import { FinanceiroGateway } from 'infra/repository/gateway/FinanceiroGateway'
 
-export class FinanceiroRepoPrisma implements FinanceiroGateway {
+export default class FinanceiroRepoPrisma implements FinanceiroGateway {
   private constructor(private readonly prismaClient: PrismaClient) {}
 
-  public create(prismaFin: PrismaClient) {
+  public static create(prismaFin: PrismaClient) {
     return new FinanceiroRepoPrisma(prismaFin)
   }
   list(): Promise<Financeiro[]> {

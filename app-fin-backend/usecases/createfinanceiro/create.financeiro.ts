@@ -20,7 +20,7 @@ export class CreateFinanceiroUsecase
 {
   private constructor(private readonly finGateway: FinanceiroGateway) {}
 
-  public create(financeiroGateway: FinanceiroGateway) {
+  public static create(financeiroGateway: FinanceiroGateway) {
     return new CreateFinanceiroUsecase(financeiroGateway)
   }
 

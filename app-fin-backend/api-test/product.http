@@ -1,0 +1,28 @@
+###
+GET http://localhost:8000/products
+
+###
+POST http://localhost:8000/registra HTTP/1.1
+Content-Type: application/json
+
+{
+      "id" : "2347861",
+      "tipo": "receita",
+      "valor": 1000.00,
+      "status": true,
+      "data": "2024-01-01",
+      "descricao": "Salário"
+    }
+
+###
+POST http://localhost:8000/registra HTTP/1.1
+Content-Type: application/json
+
+{
+      "id" : "24799861",
+      "tipo": "despesa",
+      "valor": 100.00,
+      "status": true,
+      "data": "2024-01-01",
+      "descricao": "Conta de Luz"
+}
