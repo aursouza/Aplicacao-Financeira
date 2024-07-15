@@ -1,16 +1,16 @@
-import { IconChevronRight } from "@tabler/icons-react";
+import { IconChevronRight } from '@tabler/icons-react'
 
-import Status from "./StatusItem";
-import EntryType from "./EntryType";
-import { formatDate } from "@/utils/date";
+import Status from './StatusItem'
+import EntryType from './EntryType'
+import { formatDate } from '@/utils/date'
 
 interface EntryItemProps {
-  idEntry: string;
-  dataEntry: string;
-  descriptionEntry: string;
-  typeEntry: string;
-  valueEntry: number;
-  statusEntry: string[];
+  idEntry: string
+  dataEntry: string
+  descriptionEntry: string
+  typeEntry: string
+  valueEntry: number
+  statusEntry: string[]
 }
 
 export default function EntryItem(props: EntryItemProps) {
@@ -21,7 +21,7 @@ export default function EntryItem(props: EntryItemProps) {
     typeEntry,
     valueEntry,
     statusEntry,
-  } = props;
+  } = props
 
   return (
     <div
@@ -38,5 +38,5 @@ export default function EntryItem(props: EntryItemProps) {
         <IconChevronRight size={10} className="mr-5 sm:hidden" />
       </div>
     </div>
-  );
+  )
 }

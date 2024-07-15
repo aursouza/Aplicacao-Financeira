@@ -1,17 +1,18 @@
-import ContentArea from "./ContentArea";
-import ContentEmpty from "./ContentEmpty";
-import EntryItem from "./EntryItem";
-import Header from "./Header";
+import ContentArea from './ContentArea'
+import ContentEmpty from './ContentEmpty'
+import EntryItem from './EntryItem'
+import Header from './Header'
 
-import { items } from "../utils/mockData";
-import EntryViewMode from "./EntryViewMode";
+import { items } from '../utils/mockData'
+import EntryViewMode from './EntryViewMode'
+import StatusItem from './StatusItem'
 
 interface MainContentProps {}
 
 export default function MainContent(props: MainContentProps) {
   function renderContent(array: any[]) {
     if (Object.keys(array).length === 0) {
-      return <ContentEmpty />;
+      return <ContentEmpty />
     } else {
       return array.map((item) => {
         return (
@@ -24,8 +25,8 @@ export default function MainContent(props: MainContentProps) {
             typeEntry={item.type}
             descriptionEntry={item.description}
           />
-        );
-      });
+        )
+      })
     }
   }
 
@@ -40,8 +41,8 @@ export default function MainContent(props: MainContentProps) {
       <div className="flex flex-col gap-2 overflow-auto mt-5 sm:h-screen">
         {/* {renderContent(items)} */}
 
-        <EntryViewMode />
+        <ContentEmpty />
       </div>
     </ContentArea>
-  );
+  )
 }
