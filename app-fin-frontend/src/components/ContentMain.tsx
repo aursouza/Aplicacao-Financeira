@@ -1,48 +1,28 @@
 import ContentArea from './ContentArea'
-import ContentEmpty from './ContentEmpty'
-import EntryItem from './EntryItem'
-import Header from './Header'
-
-import { items } from '../utils/mockData'
-import EntryViewMode from './EntryViewMode'
-import StatusItem from './StatusItem'
+import InitialMainContent from './ContentInitial'
+import React from 'react'
+import { HandlerList } from '@/api/dados'
 
 interface MainContentProps {}
 
-export default function MainContent(props: MainContentProps) {
-  function renderContent(array: any[]) {
-    if (Object.keys(array).length === 0) {
-      return <ContentEmpty />
-    } else {
-      return array.map((item) => {
-        return (
-          <EntryItem
-            key={item.id}
-            idEntry={item.id}
-            dataEntry={item.data}
-            valueEntry={item.value}
-            statusEntry={item.status}
-            typeEntry={item.type}
-            descriptionEntry={item.description}
-          />
-        )
-      })
-    }
-  }
+async function getData() {
+  const response = await HandlerList()
+  return response.json()
+}
 
+export default async function MainContent(props: MainContentProps) {
+  const results = await getData().then((data) => {
+    return data
+  })
+
+  const qtreg = results.reg.length === undefined ? 0 : results.reg.length
   return (
     <ContentArea
       col
       center
       className="bg-black w-full h-screen p-5 sm:mt-[75px] sm:justify-start"
     >
-      {/* <Header /> */}
-
-      <div className="flex flex-col gap-2 overflow-auto mt-5 sm:h-screen">
-        {/* {renderContent(items)} */}
-
-        <ContentEmpty />
-      </div>
+      <InitialMainContent qtreg={qtreg} results={results} />
     </ContentArea>
   )
 }

@@ -1,14 +1,14 @@
 export function formatDate(date: string) {
-  const newDate = new Date(date);
+  const newDate = new Date(date)
 
-  const dateStandard = newDate
-    .toLocaleDateString("pt-BR", {
+  const dateStandard = newDate.toLocaleDateString('pt-BR')
+  /*, {
       day: "numeric",
       month: "short",
       year: "numeric",
     })
     .split(" de ")
-    .join(" ");
+    .join(" ");*/
 
-  return dateStandard;
+  return dateStandard
 }

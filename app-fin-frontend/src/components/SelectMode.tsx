@@ -3,15 +3,14 @@ import { IconPointFilled } from '@tabler/icons-react'
 import { useState } from 'react'
 
 interface StatusProps {
-  name: string
-  status: string
+  mode: String
   onSelectChange: (value: string) => void
   value: string
 }
 
-export default function StatusItem(props: StatusProps) {
-  const statusvm: string[] = ['Consolidado', 'Pendente', 'Cancelado']
-  const [stateOptionStatus, setStateOptionStatus] = useState(props.status)
+export default function StatusMode(props: StatusProps) {
+  const mode: string[] = ['Visualização', 'Edição']
+  const [stateOptionStatus, setStateOptionStatus] = useState(props.mode)
   const handleSelectChange = (e: any) => {
     props.onSelectChange(e.target.value)
     setStateOptionStatus(e.target.value)
@@ -25,9 +24,9 @@ export default function StatusItem(props: StatusProps) {
       <select
         className="px-0.5 pt-1 font-bold bg-transparent text-sm text-center appearance-none"
         onChange={handleSelectChange}
-        value={stateOptionStatus}
+        value={props.value}
       >
-        {statusvm.map((item, index) => {
+        {mode.map((item, index) => {
           return (
             <option key={index} value={item}>
               {item}

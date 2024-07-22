@@ -1,31 +1,52 @@
-import Bar from '@/components/Bar'
-import ContentArea from '@/components/ContentArea'
-import EntryItem from '@/components/EntryItem'
-import Header from '@/components/Header'
+import handler from '@/api/dados'
+import ContentArea from '../../../components/ContentArea'
+import ContentEmpty from '../../../components/ContentEmpty'
+import EntryItem from '../../../components/EntryItem'
+import Header from '../../../components/Header'
 
-import { items } from '@/utils/mockData'
+interface MainContentProps {
+  reg: any
+  numreg: number
+}
+export function getStaticProps() {
+  const resultados = handler
+  return {
+    props: { reg: resultados, numreg: resultados.length },
+  }
+}
+export default async function MainContent(props: MainContentProps) {
+  function renderContent(array: any[]) {
+    if (Object.keys(array).length === 0) {
+      return <ContentEmpty />
+    } else {
+      return array.map((item) => {
+        return (
+          <EntryItem
+            key={item.id}
+            idEntry={item.id}
+            dataEntry={item.data}
+            valueEntry={item.value}
+            statusEntry={item.status}
+            typeEntry={item.type}
+            descriptionEntry={item.description}
+          />
+        )
+      })
+    }
+  }
+  const reg = props.numreg === undefined ? 0 : props.numreg
 
-const viewdata = () => {
   return (
-    <ContentArea gap={0} className="h-screen bg-black">
-      <Bar />
-      <ContentArea
-        col
-        center
-        className="bg-black w-full h-screen p-5 sm:mt-[75px] sm:justify-start"
-      >
-        <Header />
-        <EntryItem
-          idEntry={items[0].id}
-          dataEntry={items[0].data}
-          descriptionEntry={items[0].description}
-          typeEntry={items[0].type}
-          valueEntry={items[0].value}
-          statusEntry={items[0].status}
-        />
-      </ContentArea>
+    <ContentArea
+      col
+      center
+      className="bg-black w-full h-screen p-5 sm:mt-[75px] sm:justify-start"
+    >
+      <Header registros={reg} />
+
+      <div className="flex flex-col gap-2 overflow-auto mt-5 sm:h-screen">
+        {renderContent(props.reg)}
+      </div>
     </ContentArea>
   )
 }
-
-export default viewdata

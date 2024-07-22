@@ -13,7 +13,7 @@ const EmptyData = () => {
         center
         className="bg-black w-full h-screen p-5 sm:mt-[75px] sm:justify-start"
       >
-        <Header />
+        <Header registros="0" />
         <ContentEmpty />
       </ContentArea>
     </ContentArea>

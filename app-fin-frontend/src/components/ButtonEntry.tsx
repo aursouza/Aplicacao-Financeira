@@ -1,4 +1,4 @@
-import { IconCirclePlusFilled } from "@tabler/icons-react";
+import { IconCirclePlusFilled } from '@tabler/icons-react'
 
 export default function ButtonEntry() {
   return (
@@ -6,5 +6,5 @@ export default function ButtonEntry() {
       <IconCirclePlusFilled size={32} />
       <span className="ml-1 font-light sm:hidden sm:ml-0">Novo registro</span>
     </button>
-  );
+  )
 }

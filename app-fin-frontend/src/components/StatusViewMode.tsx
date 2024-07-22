@@ -1,13 +1,13 @@
-import { IconPointFilled } from "@tabler/icons-react";
+import { IconPointFilled } from '@tabler/icons-react'
 
-const status: string[] = ["Visualização", "Edição"];
+const statusx: string[] = ['Visualização', 'Edição']
 
 interface StatusProps {
-  status: string;
+  status: string
 }
 
-export default function StatusItem(props: StatusProps) {
-  const { status } = props;
+export default function StatusViewMode(props: StatusProps) {
+  const { status } = props
 
   return (
     <div
@@ -16,5 +16,5 @@ export default function StatusItem(props: StatusProps) {
       <IconPointFilled size={15} className={`text-${status}`} />
       <span className="px-0.5 pt-1 font-bold">{status}</span>
     </div>
-  );
+  )
 }

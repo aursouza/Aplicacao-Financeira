@@ -1,11 +1,11 @@
 interface ContentAreaProps {
-  col?: boolean;
-  gap?: number;
-  center?: boolean;
-  centerMain?: boolean;
-  centerCross?: boolean;
-  className?: string;
-  children?: any;
+  col?: boolean
+  gap?: number
+  center?: boolean
+  centerMain?: boolean
+  centerCross?: boolean
+  className?: string
+  children?: any
 }
 
 export default function ContentArea(props: ContentAreaProps) {
@@ -13,14 +13,14 @@ export default function ContentArea(props: ContentAreaProps) {
     <div
       className={`
       flex
-      ${props.col ? "flex-col" : ""}
-      ${props.gap != null ? `gap-${props.gap}` : "gap-3"}
-      ${props.center ? "justify-center items-center" : ""}
-      ${props.centerMain ? "justify-center" : ""}
-      ${props.centerCross ? "items-center" : ""}
-      ${props.className ?? ""}`}
+      ${props.col ? 'flex-col' : ''}
+      ${props.gap != null ? `gap-${props.gap}` : 'gap-3'}
+      ${props.center ? 'justify-center items-center' : ''}
+      ${props.centerMain ? 'justify-center' : ''}
+      ${props.centerCross ? 'items-center' : ''}
+      ${props.className ?? ''}`}
     >
       {props.children}
     </div>
-  );
+  )
 }

@@ -1,23 +1,26 @@
-import Bar from '@/components/Bar'
 import ContentArea from '@/components/ContentArea'
 import EntryViewMode from '@/components/EntryViewMode'
-import Header from '@/components/Header'
-import StatusItem from '@/components/StatusItem'
+import { HandlerCreate, HandlerUpdate, HandlerDelete } from '@/api/dados'
 
-const viewdata = () => {
+const Entrydata = () => {
+  const novadata = new Date()
   return (
-    <ContentArea gap={0} className="h-screen bg-black">
-      <Bar />
-      <ContentArea
-        col
-        center
-        className="bg-black w-full h-screen p-5 sm:mt-[75px] sm:justify-start"
-      >
-        <Header />
-        <EntryViewMode />
-      </ContentArea>
+    <ContentArea
+      col
+      center
+      className="bg-black w-full h-screen p-5 sm:mt-[75px] sm:justify-start"
+    >
+      <EntryViewMode
+        idEntry=""
+        dataEntry={novadata.toISOString()}
+        descriptionEntry=""
+        typeEntry="despesa"
+        valueEntry="0.00"
+        statusEntry="Consolidado"
+        tipovisualização="1"
+      />
     </ContentArea>
   )
 }
 
-export default viewdata
+export default Entrydata
