@@ -2,6 +2,7 @@ import express, { Request } from 'express'
 import cors from 'cors'
 import { Route } from 'infra/api/routes/route'
 import { Api } from 'infra/api/api'
+import bodyParser from 'body-parser'
 
 export default class ExpressAdapter implements Api {
   private readonly app: any
@@ -9,7 +10,9 @@ export default class ExpressAdapter implements Api {
     this.app = express()
     this.app.use(express.json())
     this.app.use(cors<Request>())
-    this.app.use(express.urlencoded({ extended: true }))
+    this.app.use(bodyParser.urlencoded({ extended: true }))
+    this.app.use(bodyParser.json())
+    //this.app.use(express.urlencoded({ extended: true }))
     this.addRoutes(routes)
   }
 

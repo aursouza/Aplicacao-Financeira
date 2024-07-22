@@ -10,7 +10,8 @@ export default class Data {
       if (!this.validate(value)) {
         throw new Error('Data inválida')
       }
-      this._value = this.format(value)
+      const nvalue = value.substring(0, 10)
+      this._value = this.format(nvalue)
     }
   }
 

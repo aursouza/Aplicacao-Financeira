@@ -1,19 +1,19 @@
 export default class Tipo {
-  private _value: string;
-  private static validTypes = ["receita", "despesa"];
+  private _value: string
+  private static validTypes = ['receita', 'despesa']
 
   constructor(value: string) {
     if (!this.validate(value)) {
-      throw new Error("Tipo inválido");
+      throw new Error('Tipo inválido')
     }
-    this._value = value;
+    this._value = value
   }
 
   private validate(value: string): boolean {
-    return Tipo.validTypes.includes(value);
+    return Tipo.validTypes.includes(value)
   }
 
   get value(): string {
-    return this._value;
+    return this._value
   }
 }

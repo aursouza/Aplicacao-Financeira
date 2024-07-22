@@ -23,7 +23,6 @@ export class UpdateFinanceiroRoute implements Route {
   getHandler(): (req: Request, res: Response) => Promise<void> {
     return async (req: Request, res: Response) => {
       const { id, tipo, valor, status, data, descricao } = req.body
-
       const input: UpdateFinanceiroInputDto = {
         id,
         tipo,

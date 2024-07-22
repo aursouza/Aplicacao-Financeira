@@ -45,12 +45,12 @@ PUT http://localhost:8000/altera HTTP/1.1
 Content-Type: application/json
 
 {
-      "id" : "24799861",
+      "id" : "24799854",
       "tipo": "despesa",
-      "valor": 200.00,
+      "valor": 350,
       "status": "Consolidado",
-      "data": "2024-01-01",
-      "descricao": "Conta de Luz"
+      "data": "2024-06-25",
+      "descricao": "Conta de Luz 2"
 }
 
 ###
