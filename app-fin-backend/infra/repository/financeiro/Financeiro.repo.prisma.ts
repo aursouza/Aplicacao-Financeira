@@ -10,14 +10,13 @@ export default class FinanceiroRepoPrisma implements FinanceiroGateway {
   }
   async list(): Promise<Financeiro[]> {
     const itens = await this.prismaClient.financeiro.findMany()
-
     const financeiroList = itens.map((p) => {
       const reg = Financeiro.with({
         id: p.id,
         tipo: p.tipo,
         valor: p.Valor,
         status: p.status,
-        data: new Date(p.data).toISOString(),
+        data: p.data,
         descricao: p.descricao,
       })
       return reg
@@ -38,13 +37,13 @@ export default class FinanceiroRepoPrisma implements FinanceiroGateway {
       where: { id: financeiro.id },
       data: dados,
     })
-    console.log(retorno)
+
     return Financeiro.with({
       id: retorno.id,
       tipo: retorno.tipo,
       valor: retorno.Valor,
       status: retorno.status,
-      data: new Date(retorno.data).toISOString(),
+      data: retorno.data,
       descricao: retorno.descricao,
     })
   }
@@ -57,7 +56,7 @@ export default class FinanceiroRepoPrisma implements FinanceiroGateway {
       tipo: financeiro.tipo.value,
       Valor: financeiro.valor.value,
       status: financeiro.status.value,
-      data: financeiro.data.value.toISOString(),
+      data: financeiro.data.value,
       descricao: financeiro.descricao.value,
     }
     await this.prismaClient.financeiro.create({ data: dados })

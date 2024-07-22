@@ -6,7 +6,7 @@ export type CreateFinanceiroInputDto = {
   id: string
   tipo: string
   valor: number
-  status: boolean
+  status: string
   data: string
   descricao: string
 }

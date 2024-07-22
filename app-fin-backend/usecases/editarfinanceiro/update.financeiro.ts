@@ -6,7 +6,7 @@ export type UpdateFinanceiroInputDto = {
   id: string
   tipo: string
   valor: number
-  status: boolean
+  status: string
   data: string
   descricao: string
 }
@@ -15,7 +15,7 @@ export type UpdateFinanceiroOutputDto = {
   id: string
   tipo: string
   valor: number
-  status: boolean
+  status: string
   data: Date
   descricao: string
 }

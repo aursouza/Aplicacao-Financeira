@@ -1,15 +1,15 @@
 export default class Status {
-  private _value: boolean;
+  private _value: string
 
-  constructor(value: boolean) {
-    this._value = value;
+  constructor(value: string) {
+    this._value = value
   }
 
-  get value(): boolean {
-    return this._value;
+  get value(): string {
+    return this._value
   }
 
   get isConsolidado(): boolean {
-    return this._value === true;
+    return this._value === 'Consolidado'
   }
 }

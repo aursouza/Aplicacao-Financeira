@@ -9,8 +9,8 @@ export type ListarFinanceiroOutputDto = {
     id: string
     tipo: string
     valor: number
-    status: boolean
-    data: string
+    status: string
+    data: Date
     descricao: string
   }[]
 }
@@ -38,7 +38,7 @@ export class ListarFinanceiroUsecase
           tipo: r.tipo.value.toString(),
           valor: parseFloat(r.valor.value.toString()),
           status: r.status.value,
-          data: r.data.value.toString(),
+          data: r.data.value,
           descricao: r.descricao.value.toString(),
         }
       }),

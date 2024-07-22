@@ -17,8 +17,8 @@ export type FinanceirocreateProps = {
   id?: string
   tipo: string
   valor: number
-  status: boolean
-  data: string
+  status: string
+  data: string | Date
   descricao: string
 }
 

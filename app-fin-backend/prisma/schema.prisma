@@ -14,11 +14,11 @@ datasource db {
 }
 
 model Financeiro {
-  id        String  @id
+  id        String   @id
   tipo      String
   Valor     Float
-  status    Boolean
-  data      String
+  status    String
+  data      DateTime
   descricao String
 
   @@map("financeiros")

@@ -37,7 +37,7 @@ export class UpdateFinanceiroRoute implements Route {
         await this.updateFinanceiroService.execute(input)
 
       const response = this.present(output)
-      res.status(201).json(response).send()
+      res.status(201).json(response)
     }
   }
   private present(input: UpdateFinanceiroOutputDto) {

@@ -38,7 +38,7 @@ export class CreateFinanceiroRoute implements Route {
         await this.createFinanceiroService.execute(input)
 
       const response = this.present(output)
-      res.status(201).json(response).send()
+      res.status(201).json(response)
     }
   }
 

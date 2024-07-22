@@ -1,4 +1,5 @@
-import express from 'express'
+import express, { Request } from 'express'
+import cors from 'cors'
 import { Route } from 'infra/api/routes/route'
 import { Api } from 'infra/api/api'
 
@@ -7,6 +8,7 @@ export default class ExpressAdapter implements Api {
   private constructor(routes: Route[]) {
     this.app = express()
     this.app.use(express.json())
+    this.app.use(cors<Request>())
     this.app.use(express.urlencoded({ extended: true }))
     this.addRoutes(routes)
   }
