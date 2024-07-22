@@ -33,11 +33,13 @@ export default function EntryViewMode(props: EntryViewModeProps) {
   const [selectMode, setSelectMode] = useState(mode[tmode])
   const [inputDescricao, setInputDescricao] = useState(props.descriptionEntry)
   const [showButtonExcluir, setShowButtonExcluir] = useState(false)
+
   useEffect(() => {
     props.idEntry === ''
       ? setShowButtonExcluir(false)
       : setShowButtonExcluir(true)
   }, [])
+
   const handleDecriptionChange = (e: any): void => {
     setInputDescricao(e.target.value)
   }
@@ -58,34 +60,35 @@ export default function EntryViewMode(props: EntryViewModeProps) {
   }
   const handleSaveButton = () => {
     const data = {
-      typeEntry: selectType,
-      valueEntry: inputValue,
-      statusEntry: selectItem,
-      dataEntry: inputData,
-      descriptionEntry: inputDescricao,
+      tipo: selectType,
+      valor: parseFloat(
+        inputValue.replace('R$', '').replace('.', '').replace(',', '.')
+      ),
+      status: selectItem,
+      data: inputData,
+      descricao: inputDescricao,
     }
     HandlerCreate(data)
-    console.log('Insert data??? ', data)
   }
+
   const handleUpdateButton = () => {
     const data = {
-      idEntry: props.idEntry,
-      typeEntry: selectType,
-      valueEntry: inputValue,
-      statusEntry: selectItem,
-      dataEntry: inputData,
-      descriptionEntry: inputDescricao,
+      id: props.idEntry,
+      tipo: selectType,
+      valor: parseFloat(
+        inputValue.replace('R$', '').replace('.', '').replace(',', '.')
+      ),
+      status: selectItem,
+      data: inputData,
+      descricao: inputDescricao,
     }
     HandlerUpdate(data)
-    console.log('Alterou??? ')
   }
+
   const handleDeleteButton = () => {
-    const data = {
-      id: props.idEntry,
-    }
-    HandlerDelete(data)
-    console.log('Deletou??? ')
+    HandlerDelete(props.idEntry)
   }
+
   const handleData = (e: any) => {
     e.preventDefault()
     props.idEntry ? handleUpdateButton() : handleSaveButton()
@@ -111,7 +114,7 @@ export default function EntryViewMode(props: EntryViewModeProps) {
         <div className="flex w-full justify-between md:flex-col-reverse gap-5">
           <div className="flex flex-col items-start">
             <span className="text-bold text-inter font-bold">
-              {props.idEntry}
+              {props.idEntry.substring(0, 8)}
             </span>
             <input
               placeholder="Descrição do registro"

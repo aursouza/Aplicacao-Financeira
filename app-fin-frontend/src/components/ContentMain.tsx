@@ -7,13 +7,11 @@ interface MainContentProps {}
 
 async function getData() {
   const response = await HandlerList()
-  return response.json()
+  return response
 }
 
 export default async function MainContent(props: MainContentProps) {
-  const results = await getData().then((data) => {
-    return data
-  })
+  const results = await getData()
 
   const qtreg = results.reg.length === undefined ? 0 : results.reg.length
   return (

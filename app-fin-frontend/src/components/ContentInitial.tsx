@@ -18,7 +18,6 @@ export default function InitialMainContent(items: InitialContentProps) {
 
   const handleFiltro = (Filtro: string) => {
     Filtro == 'Filtrar por Status' ? (Filtro = '') : Filtro
-    console.log(Filtro)
     setFiltro(Filtro)
   }
 

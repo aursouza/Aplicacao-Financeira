@@ -28,7 +28,7 @@ export default function EntryItem(props: EntryItemProps) {
                 sm:flex-row sm:flex-wrap sm:justify-between sm:w-full sm:h-auto sm:pl-3 sm:pr-3 sm:pb-3"
     >
       <span className="text-inter font-medium ml-5 sm:ml-0">
-        {props.idEntry}
+        {props.idEntry.substring(0, 8)}
       </span>
       <span className="font-light text-lightGray">
         {formatDate(props.dataEntry)}
