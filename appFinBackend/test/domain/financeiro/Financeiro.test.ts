@@ -1,11 +1,11 @@
-import Financeiro from '../../../domain/financeiro/Financeiro'
+import Financeiro from '../../../src/domain/financeiro/Financeiro'
 
 describe('Financeiro', () => {
   it('Deve criar uma instância válida de Financeiro', () => {
     const financeiro = Financeiro.create({
       tipo: 'receita',
       valor: 100,
-      status: true,
+      status: 'Consolidado',
       data: '2024-01-01',
       descricao: 'Salário',
     })
@@ -13,7 +13,7 @@ describe('Financeiro', () => {
     expect(financeiro.id).toBeDefined()
     expect(financeiro.tipo.value).toBe('receita')
     expect(financeiro.valor.value).toBe(100)
-    expect(financeiro.status.value).toBe(true)
+    expect(financeiro.status.value).toBe('Consolidado')
     expect(financeiro.status.isConsolidado).toBe(true)
     expect(financeiro.data.value).toEqual(new Date('2024-01-01T00:00:00Z'))
     expect(financeiro.descricao.value).toBe('Salário')
@@ -25,7 +25,7 @@ describe('Financeiro', () => {
       id,
       tipo: 'despesa',
       valor: 200,
-      status: false,
+      status: 'Consolidado',
       data: '2024-02-01',
       descricao: 'Compra de materiais',
     })
@@ -33,7 +33,7 @@ describe('Financeiro', () => {
     expect(financeiro.id).toBe(id)
     expect(financeiro.tipo.value).toBe('despesa')
     expect(financeiro.valor.value).toBe(200)
-    expect(financeiro.status.value).toBe(false)
+    expect(financeiro.status.value).toBe('Consolidado')
     expect(financeiro.status.isConsolidado).toBe(false)
     expect(financeiro.data.value).toEqual(new Date('2024-02-01T00:00:00Z'))
     expect(financeiro.descricao.value).toBe('Compra de materiais')
@@ -44,7 +44,7 @@ describe('Financeiro', () => {
       Financeiro.create({
         tipo: 'invalido',
         valor: 100,
-        status: true,
+        status: 'Consolidado',
         data: '2024-01-01',
         descricao: 'Descrição inválida',
       })
@@ -55,7 +55,7 @@ describe('Financeiro', () => {
     const financeiro = Financeiro.with({
       tipo: 'receita',
       valor: 100,
-      status: true,
+      status: 'Consolidado',
       data: '2024-01-01',
       descricao: 'Salário',
     })
@@ -63,7 +63,7 @@ describe('Financeiro', () => {
     expect(financeiro.id).toBeDefined()
     expect(financeiro.tipo.value).toBe('receita')
     expect(financeiro.valor.value).toBe(100)
-    expect(financeiro.status.value).toBe(true)
+    expect(financeiro.status.value).toBe('Consolidado')
     expect(financeiro.status.isConsolidado).toBe(true)
     expect(financeiro.data.value).toEqual(new Date('2024-01-01T00:00:00Z'))
     expect(financeiro.descricao.value).toBe('Salário')

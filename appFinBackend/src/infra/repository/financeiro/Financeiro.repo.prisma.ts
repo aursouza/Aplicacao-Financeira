@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
-import Financeiro from 'domain/financeiro/Financeiro'
-import { FinanceiroGateway } from 'infra/repository/gateway/FinanceiroGateway'
+import Financeiro from '@/domain/financeiro/Financeiro'
+import { FinanceiroGateway } from '@/infra/repository/gateway/FinanceiroGateway'
 
 export default class FinanceiroRepoPrisma implements FinanceiroGateway {
   private constructor(private readonly prismaClient: PrismaClient) {}

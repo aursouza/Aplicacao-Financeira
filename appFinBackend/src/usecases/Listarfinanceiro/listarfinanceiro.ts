@@ -1,6 +1,6 @@
-import { FinanceiroGateway } from 'infra/repository/gateway/FinanceiroGateway'
-import { Usecase } from 'usecases/usecase'
-import Financeiro from 'domain/financeiro/Financeiro'
+import { FinanceiroGateway } from '@/infra/repository/gateway/FinanceiroGateway'
+import { Usecase } from '@/usecases/usecase'
+import Financeiro from '@/domain/financeiro/Financeiro'
 
 export type ListarFinanceiroInputDto = void
 

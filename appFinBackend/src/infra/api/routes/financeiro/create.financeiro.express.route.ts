@@ -2,7 +2,7 @@ import {
   CreateFinanceiroInputDto,
   CreateFinanceiroOutputDto,
   CreateFinanceiroUsecase,
-} from 'usecases/createfinanceiro/create.financeiro'
+} from '@/usecases/createfinanceiro/create.financeiro'
 import { HttpMethod, Route } from '../route'
 import { Request, Response } from 'express'
 

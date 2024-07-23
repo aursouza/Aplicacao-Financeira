@@ -1,9 +1,9 @@
 import { Request, Response } from 'express'
-import { HttpMethod, Route } from '../route'
+import { HttpMethod, Route } from './route'
 import {
   ListarFinanceiroUsecase,
   ListarFinanceiroOutputDto,
-} from 'usecases/Listarfinanceiro/listarfinanceiro'
+} from '@/usecases/Listarfinanceiro/listarfinanceiro'
 
 export type ListFinanceiroResponseDto = {
   reg: {
@@ -16,7 +16,7 @@ export type ListFinanceiroResponseDto = {
   }[]
 }
 
-export class ListarFinanceiroRoute implements Route {
+export class PrincipalRoute implements Route {
   private constructor(
     private readonly path: string,
     private readonly method: HttpMethod,
@@ -24,11 +24,7 @@ export class ListarFinanceiroRoute implements Route {
   ) {}
 
   public static create(listarFinanceiroService: ListarFinanceiroUsecase) {
-    return new ListarFinanceiroRoute(
-      '/list',
-      HttpMethod.GET,
-      listarFinanceiroService
-    )
+    return new PrincipalRoute('/', HttpMethod.GET, listarFinanceiroService)
   }
 
   public getHandler() {

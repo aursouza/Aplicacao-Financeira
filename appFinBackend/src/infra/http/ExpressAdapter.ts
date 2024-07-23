@@ -1,7 +1,7 @@
 import express, { Request } from 'express'
 import cors from 'cors'
-import { Route } from 'infra/api/routes/route'
-import { Api } from 'infra/api/api'
+import { Route } from '@/infra/api/routes/route'
+import { Api } from '@/infra/api/api'
 import bodyParser from 'body-parser'
 
 export default class ExpressAdapter implements Api {

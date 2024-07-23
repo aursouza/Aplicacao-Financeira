@@ -3,7 +3,7 @@ import { HttpMethod, Route } from '../route'
 import {
   DeleteFinanceiroInputDto,
   DeleteFinanceiroUsecase,
-} from 'usecases/excluirfinanceiro/delete.financeiro'
+} from '@/usecases/excluirfinanceiro/delete.financeiro'
 
 export class DeleteFinanceiroRoute implements Route {
   private constructor(

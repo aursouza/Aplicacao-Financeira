@@ -1,16 +1,16 @@
-import FinanceiroRepoPrisma from 'infra/repository/financeiro/Financeiro.repo.prisma'
-import ExpressAdapter from 'infra/http/ExpressAdapter'
-import { prisma } from 'framework/prisma/prisma'
+import FinanceiroRepoPrisma from '@/infra/repository/financeiro/Financeiro.repo.prisma'
+import ExpressAdapter from '@/infra/http/ExpressAdapter'
+import { prisma } from '@/framework/prisma/prisma'
 
-import { CreateFinanceiroUsecase } from 'usecases/createfinanceiro/create.financeiro'
-import { CreateFinanceiroRoute } from 'infra/api/routes/financeiro/create.financeiro.express.route'
-import { UpdateFinanceiroUsecase } from 'usecases/editarfinanceiro/update.financeiro'
-import { UpdateFinanceiroRoute } from 'infra/api/routes/financeiro/update.financeiro.express.route'
-import { DeleteFinanceiroUsecase } from 'usecases/excluirfinanceiro/delete.financeiro'
-import { DeleteFinanceiroRoute } from 'infra/api/routes/financeiro/delete.financeiro.express.route'
-import { ListarFinanceiroUsecase } from 'usecases/Listarfinanceiro/listarfinanceiro'
-import { ListarFinanceiroRoute } from 'infra/api/routes/financeiro/listar.financeiro.express.route'
-import { PrincipalRoute } from 'infra/api/routes/rotaprincipal'
+import { CreateFinanceiroUsecase } from '@/usecases/createfinanceiro/create.financeiro'
+import { CreateFinanceiroRoute } from '@/infra/api/routes/financeiro/create.financeiro.express.route'
+import { UpdateFinanceiroUsecase } from '@/usecases/editarfinanceiro/update.financeiro'
+import { UpdateFinanceiroRoute } from '@/infra/api/routes/financeiro/update.financeiro.express.route'
+import { DeleteFinanceiroUsecase } from '@/usecases/excluirfinanceiro/delete.financeiro'
+import { DeleteFinanceiroRoute } from '@/infra/api/routes/financeiro/delete.financeiro.express.route'
+import { ListarFinanceiroUsecase } from '@/usecases/Listarfinanceiro/listarfinanceiro'
+import { ListarFinanceiroRoute } from '@/infra/api/routes/financeiro/listar.financeiro.express.route'
+import { PrincipalRoute } from '@/infra/api/routes/rotaprincipal'
 
 function main() {
   const aRepository = FinanceiroRepoPrisma.create(prisma)

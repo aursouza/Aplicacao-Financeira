@@ -1,4 +1,4 @@
-import Financeiro from 'domain/financeiro/Financeiro'
+import Financeiro from '@/domain/financeiro/Financeiro'
 
 export interface FinanceiroGateway {
   save(financeiro: Financeiro): Promise<void>
