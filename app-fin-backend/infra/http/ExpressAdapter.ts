@@ -12,7 +12,7 @@ export default class ExpressAdapter implements Api {
     this.app.use(cors<Request>())
     this.app.use(bodyParser.urlencoded({ extended: true }))
     this.app.use(bodyParser.json())
-    //this.app.use(express.urlencoded({ extended: true }))
+    //this.app.use(express.urlencoded({ extended: true })) /* Este codigo foi retirado para inserir BodyParser, porém funcionou bem anteriormente ao teste com o react */
     this.addRoutes(routes)
   }
 

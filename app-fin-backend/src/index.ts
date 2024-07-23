@@ -10,6 +10,7 @@ import { DeleteFinanceiroUsecase } from 'usecases/excluirfinanceiro/delete.finan
 import { DeleteFinanceiroRoute } from 'infra/api/routes/financeiro/delete.financeiro.express.route'
 import { ListarFinanceiroUsecase } from 'usecases/Listarfinanceiro/listarfinanceiro'
 import { ListarFinanceiroRoute } from 'infra/api/routes/financeiro/listar.financeiro.express.route'
+import { PrincipalRoute } from 'infra/api/routes/rotaprincipal'
 
 function main() {
   const aRepository = FinanceiroRepoPrisma.create(prisma)
@@ -21,12 +22,14 @@ function main() {
   const updateRoute = UpdateFinanceiroRoute.create(updateFinanceiroUsecase)
   const deleteRoute = DeleteFinanceiroRoute.create(deleteFinanceiroUsecase)
   const listarRoute = ListarFinanceiroRoute.create(listarFinanceiroUsecase)
+  const principalRoute = PrincipalRoute.create(listarFinanceiroUsecase)
   const port = 8000
   const api = ExpressAdapter.create([
     createRoute,
     updateRoute,
     deleteRoute,
     listarRoute,
+    principalRoute,
   ])
   api.start(port)
 }
