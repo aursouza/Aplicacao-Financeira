@@ -1,19 +1,19 @@
 'use client'
 import { IconPointFilled } from '@tabler/icons-react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { SelectItemContext } from './EntryViewMode'
 
 interface StatusProps {
   name: string
-  status: string
-  onSelectChange: (value: string) => void
   value: string
 }
 
 export default function StatusItem(props: StatusProps) {
+  let { selectItem, setSelectItem } = useContext(SelectItemContext)
   const statusvm: string[] = ['Consolidado', 'Pendente', 'Cancelado']
-  const [stateOptionStatus, setStateOptionStatus] = useState(props.status)
+  const [stateOptionStatus, setStateOptionStatus] = useState(props.value)
   const handleSelectChange = (e: any) => {
-    props.onSelectChange(e.target.value)
+    setSelectItem(e.target.value)
     setStateOptionStatus(e.target.value)
   }
   return (

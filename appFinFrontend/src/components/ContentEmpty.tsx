@@ -1,7 +1,6 @@
-import Image from "next/image";
-
-import img from "../../public/image/empty.png";
-import ContentArea from "./ContentArea";
+import Image from 'next/image'
+import img from '../../public/image/empty.png'
+import ContentArea from './ContentArea'
 
 export default function ContentEmpty() {
   return (
@@ -16,5 +15,5 @@ export default function ContentEmpty() {
         para adicionar receitas ou despesas
       </p>
     </ContentArea>
-  );
+  )
 }

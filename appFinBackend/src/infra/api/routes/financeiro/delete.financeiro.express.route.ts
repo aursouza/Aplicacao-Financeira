@@ -19,15 +19,18 @@ export class DeleteFinanceiroRoute implements Route {
       deleteFinanceiroService
     )
   }
-  getHandler(): (req: Request, res: Response) => Promise<void> {
+  public getHandler(): (req: Request, res: Response) => Promise<void> {
     return async (req: Request, res: Response) => {
-      const { id, tipo, valor, status, data, descricao } = req.body
+      console.log('No handler')
+      console.log(req.params)
+      const { id } = req.body
 
       const input: DeleteFinanceiroInputDto = {
         id,
       }
 
-      const output = await this.deleteFinanceiroService.execute(input)
+      res.status(200).json(id)
+      // const output = await this.deleteFinanceiroService.execute(input)
     }
   }
   getPath(): string {

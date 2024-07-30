@@ -1,9 +1,9 @@
 'use client'
 import { IconChevronRight } from '@tabler/icons-react'
-import Status from './StatusItem'
+import StatusItem from './StatusItem'
 import EntryType from './EntryType'
 import { formatDate } from '@/utils/date'
-import { useState } from 'react'
+import { createContext, useState } from 'react'
 import Link from 'next/link'
 
 interface EntryItemProps {
@@ -15,16 +15,13 @@ interface EntryItemProps {
   descriptionEntry: string
 }
 
+export let SelectItemContext = createContext({} as any)
 export default function EntryItem(props: EntryItemProps) {
   const [selectItem, setSelectItem] = useState(props.statusEntry)
 
-  function handleSelectChange(item: string): void {
-    setSelectItem(item)
-  }
-
   return (
     <div
-      className="flex justify-around items-baseline pt-4 w-[730px] h-[60px] rounded-lg bg-lightBlack
+      className="flex justify-around items-baseline pt-4 w-[730px] h-[60px] rounded-lg p-2 bg-lightBlack
                 sm:flex-row sm:flex-wrap sm:justify-between sm:w-full sm:h-auto sm:pl-3 sm:pr-3 sm:pb-3"
     >
       <span className="text-inter font-medium ml-5 sm:ml-0">
@@ -39,13 +36,9 @@ export default function EntryItem(props: EntryItemProps) {
 
       <div className="flex gap-3 justify-end items-center w-[300px] sm:w-full sm:justify-between">
         <EntryType value={props.valueEntry} type={props.typeEntry} />
-        <Status
-          name="status"
-          key={props.idEntry}
-          status={props.statusEntry}
-          value={selectItem}
-          onSelectChange={handleSelectChange}
-        />
+        <SelectItemContext.Provider value={{ selectItem, setSelectItem }}>
+          <StatusItem name="status" value={selectItem} key={props.idEntry} />
+        </SelectItemContext.Provider>
         <Link
           href={{
             pathname: 'viewentry',

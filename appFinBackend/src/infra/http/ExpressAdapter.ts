@@ -6,7 +6,7 @@ import bodyParser from 'body-parser'
 
 export default class ExpressAdapter implements Api {
   private readonly app: any
-  private constructor(routes: Route[]) {
+  private constructor(readonly routes: Route[]) {
     this.app = express()
     this.app.use(express.json())
     this.app.use(cors<Request>())
@@ -23,6 +23,7 @@ export default class ExpressAdapter implements Api {
   public start(port: number): void {
     this.app.listen(port, () => {
       console.log(`Server running on port ${port}`)
+      console.log(this.routes)
     })
   }
 

@@ -4,11 +4,12 @@ import StatusItem from './StatusItem'
 import Link from 'next/link'
 import SelectEntryRegistry from './SelectEntryRegistry'
 import InputRegistry from './InputRegistry'
-import { useState, useRef, useEffect } from 'react'
-import StatusMode from './SelectMode'
+import { useState, useEffect, createContext } from 'react'
 import { formatDate } from '@/utils/date'
 import formatValue from '@/utils/currency'
 import { HandlerCreate, HandlerDelete, HandlerUpdate } from '@/api/dados'
+import StatusMode from './SelectMode'
+import InputRegistryData from './InputRegistryData'
 
 const mode: string[] = ['Visualização', 'Edição']
 
@@ -21,42 +22,31 @@ interface EntryViewModeProps {
   descriptionEntry: string
   tipovisualização: string
 }
+export let SelectModeContext = createContext({} as any)
+export let SelectItemContext = createContext({} as any)
+export let InputDataContext = createContext({} as any)
+export let InputValorContext = createContext({} as any)
+export let SelectEntryContext = createContext({} as any)
 
 export default function EntryViewMode(props: EntryViewModeProps) {
   const tmode = parseInt(props.tipovisualização)
+  const [inputIdEntry] = useState(props.idEntry)
   const [selectItem, setSelectItem] = useState(props.statusEntry)
   const [inputData, setInputData] = useState(props.dataEntry)
-  const refData = useRef<HTMLInputElement>(null)
   const [inputValue, setInputValue] = useState(props.valueEntry)
-  const refValue = useRef<HTMLInputElement>(null)
   const [selectType, setSelectType] = useState(props.typeEntry)
   const [selectMode, setSelectMode] = useState(mode[tmode])
   const [inputDescricao, setInputDescricao] = useState(props.descriptionEntry)
   const [showButtonExcluir, setShowButtonExcluir] = useState(false)
 
   useEffect(() => {
-    props.idEntry === ''
+    inputIdEntry === ''
       ? setShowButtonExcluir(false)
       : setShowButtonExcluir(true)
-  }, [])
+  }, [inputIdEntry])
 
   const handleDecriptionChange = (e: any): void => {
     setInputDescricao(e.target.value)
-  }
-  const handleSelectTypeChange = (e: any) => {
-    setSelectType(e)
-  }
-  const handleSelectChange = (e: any): void => {
-    setSelectItem(e)
-  }
-  const handleInputDataChange = (e: any): any => {
-    setInputData(e)
-  }
-  const handleValorChange = (e: any): any => {
-    setInputValue(e)
-  }
-  const handleSelectModeChange = (e: any) => {
-    setSelectMode(e)
   }
   const handleSaveButton = () => {
     const data = {
@@ -73,7 +63,7 @@ export default function EntryViewMode(props: EntryViewModeProps) {
 
   const handleUpdateButton = () => {
     const data = {
-      id: props.idEntry,
+      id: inputIdEntry,
       tipo: selectType,
       valor: parseFloat(
         inputValue.replace('R$', '').replace('.', '').replace(',', '.')
@@ -82,6 +72,7 @@ export default function EntryViewMode(props: EntryViewModeProps) {
       data: inputData,
       descricao: inputDescricao,
     }
+
     HandlerUpdate(data)
   }
 
@@ -91,7 +82,7 @@ export default function EntryViewMode(props: EntryViewModeProps) {
 
   const handleData = (e: any) => {
     e.preventDefault()
-    props.idEntry ? handleUpdateButton() : handleSaveButton()
+    inputIdEntry ? handleUpdateButton() : handleSaveButton()
   }
 
   return (
@@ -103,18 +94,16 @@ export default function EntryViewMode(props: EntryViewModeProps) {
 
       <div className="flex justify-start items-baseline w-[730px] p-6 md:p-4 px-12 bg-lightBlack gap-3 rounded-xl md:w-full md:justify-between">
         Modo
-        <StatusMode
-          mode={selectMode}
-          value={selectMode}
-          onSelectChange={handleSelectModeChange}
-        />
+        <SelectModeContext.Provider value={{ selectMode, setSelectMode }}>
+          <StatusMode mode={selectMode} />
+        </SelectModeContext.Provider>
       </div>
 
       <div className="flex justify-start items-baseline flex-wrap w-[730px] p-6 md:p-4 px-12 bg-lightBlack gap-5 rounded-xl md:w-full">
         <div className="flex w-full justify-between md:flex-col-reverse gap-5">
           <div className="flex flex-col items-start">
             <span className="text-bold text-inter font-bold">
-              {props.idEntry.substring(0, 8)}
+              {inputIdEntry.substring(0, 8)}
             </span>
             <input
               placeholder="Descrição do registro"
@@ -128,41 +117,34 @@ export default function EntryViewMode(props: EntryViewModeProps) {
           </div>
           <div className="flex flex-col items-end md:flex-row md:justify-start md:items-center">
             <span className="text-gray text-xs md:mr-2">Status Registro</span>
-            <StatusItem
-              name="status"
-              key={props.idEntry}
-              value={selectItem}
-              status={props.statusEntry}
-              onSelectChange={handleSelectChange}
-            />
+            <SelectItemContext.Provider value={{ selectItem, setSelectItem }}>
+              <StatusItem name="status" value={selectItem} key={inputIdEntry} />
+            </SelectItemContext.Provider>
           </div>
         </div>
         <div className="flex w-full justify-between md:flex-col gap-5">
           <div className="flex flex-col">
-            <InputRegistry
-              name="data"
-              label="Data Registro"
-              value={formatDate(inputData)}
-              onChange={handleInputDataChange}
-              inputref={refData}
-            />
+            <InputDataContext.Provider value={{ inputData, setInputData }}>
+              <InputRegistryData
+                name="data"
+                label="Data Registro"
+                value={formatDate(inputData)}
+              />
+            </InputDataContext.Provider>
           </div>
           <div className="flex flex-col">
             <span className="text-gray text-xs">Tipo de registro</span>
-            <SelectEntryRegistry
-              name="tipo"
-              input={selectType}
-              onSelectChange={handleSelectTypeChange}
-              value={selectType}
-            />
+            <SelectEntryContext.Provider value={{ selectType, setSelectType }}>
+              <SelectEntryRegistry name="tipo" input={selectType} />
+            </SelectEntryContext.Provider>
           </div>
-          <InputRegistry
-            name="valor"
-            label="Valor Registro"
-            value={formatValue.format(parseFloat(inputValue))}
-            onChange={handleValorChange}
-            inputref={refValue}
-          />
+          <InputValorContext.Provider value={{ inputValue, setInputValue }}>
+            <InputRegistry
+              name="valor"
+              label="Valor Registro"
+              value={formatValue.format(parseFloat(inputValue))}
+            />
+          </InputValorContext.Provider>
         </div>
       </div>
 

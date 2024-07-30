@@ -1,18 +1,19 @@
-import { useState, useContext } from 'react'
-import { InputValorContext } from './EntryViewMode'
+import { useContext, useState } from 'react'
+import { InputDataContext } from './EntryViewMode'
+
 interface InputRegistryProps {
   name: string
   label: string
   value: string | number
 }
 
-export default function InputRegistry(props: InputRegistryProps) {
-  let { inputValue, setInputValue } = useContext(InputValorContext)
+export default function InputRegistryData(props: InputRegistryProps) {
+  let { inputData, setInputData } = useContext(InputDataContext)
   const { label } = props
   const [InputText, setInputText] = useState(props.value)
 
   const handleInputChange = (e: any) => {
-    setInputValue(e.target.value)
+    setInputData(e.target.value)
     setInputText(e.target.value)
   }
 
@@ -27,7 +28,4 @@ export default function InputRegistry(props: InputRegistryProps) {
       />
     </div>
   )
-}
-function setInputData(value: any) {
-  throw new Error('Function not implemented.')
 }

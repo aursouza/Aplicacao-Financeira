@@ -1,18 +1,18 @@
 'use client'
 import { IconPointFilled } from '@tabler/icons-react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { SelectModeContext } from './EntryViewMode'
 
 interface StatusProps {
   mode: String
-  onSelectChange: (value: string) => void
-  value: string
 }
 
 export default function StatusMode(props: StatusProps) {
+  let { selectMode, setSelectMode } = useContext(SelectModeContext)
   const mode: string[] = ['Visualização', 'Edição']
   const [stateOptionStatus, setStateOptionStatus] = useState(props.mode)
   const handleSelectChange = (e: any) => {
-    props.onSelectChange(e.target.value)
+    setSelectMode(e.target.value)
     setStateOptionStatus(e.target.value)
   }
   return (
@@ -24,7 +24,7 @@ export default function StatusMode(props: StatusProps) {
       <select
         className="px-0.5 pt-1 font-bold bg-transparent text-sm text-center appearance-none"
         onChange={handleSelectChange}
-        value={props.value}
+        value={selectMode}
       >
         {mode.map((item, index) => {
           return (

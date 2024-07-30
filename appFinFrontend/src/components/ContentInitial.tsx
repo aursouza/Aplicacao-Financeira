@@ -1,8 +1,8 @@
 'use client'
+import React, { useEffect, useState, createContext } from 'react'
+import Header from './Header'
 import ContentEmpty from './ContentEmpty'
 import EntryItem from './EntryItem'
-import React, { useEffect, useRef, useState } from 'react'
-import Header from './Header'
 
 type Results = { reg: any[] }
 
@@ -10,16 +10,16 @@ interface InitialContentProps {
   qtreg: any
   results: Results
 }
+export interface Filtro {
+  modo: string
+}
+export let FilterContext = createContext({} as any)
 
 export default function InitialMainContent(items: InitialContentProps) {
+  let vfiltro = ''
   const [filtro, setFiltro] = useState('')
   const [dados, setDados] = useState(items.results.reg)
   const [filterdados, setFilterdados] = useState(dados)
-
-  const handleFiltro = (Filtro: string) => {
-    Filtro == 'Filtrar por Status' ? (Filtro = '') : Filtro
-    setFiltro(Filtro)
-  }
 
   useEffect(() => {
     if (filtro) {
@@ -49,11 +49,12 @@ export default function InitialMainContent(items: InitialContentProps) {
       })
     }
   }
-
   return (
     <div className="flex flex-col gap-2 overflow-auto mt-5 sm:h-screen">
       <div>
-        <Header registros={items.qtreg} onfiltro={handleFiltro} />
+        <FilterContext.Provider value={{ filtro, setFiltro }}>
+          <Header registros={items.qtreg} />
+        </FilterContext.Provider>
         {renderContent(filterdados)}
       </div>
     </div>

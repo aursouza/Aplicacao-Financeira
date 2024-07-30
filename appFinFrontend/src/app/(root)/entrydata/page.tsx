@@ -1,6 +1,6 @@
+'use client'
 import ContentArea from '@/components/ContentArea'
 import EntryViewMode from '@/components/EntryViewMode'
-import { HandlerCreate, HandlerUpdate, HandlerDelete } from '@/api/dados'
 
 const Entrydata = () => {
   const novadata = new Date()

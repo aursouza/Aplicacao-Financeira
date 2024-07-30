@@ -1,19 +1,18 @@
 'use client'
-
 import { IconTrendingDown, IconTrendingUp } from '@tabler/icons-react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { SelectEntryContext } from './EntryViewMode'
 
 interface SelectEntryRegistryProps {
   name: string
   input: string
-  onSelectChange: (value: string) => void
-  value: string
 }
 const type: string[] = ['despesa', 'receita']
 export default function SelectEntryRegistry(props: SelectEntryRegistryProps) {
+  let { selectType, setSelectType } = useContext(SelectEntryContext)
   const [stateOption, setStateOption] = useState(props.input)
   const handleSelectChange = (e: any) => {
-    props.onSelectChange(e.target.value)
+    setSelectType(e.target.value)
     setStateOption(e.target.value)
   }
   return (
@@ -32,7 +31,7 @@ export default function SelectEntryRegistry(props: SelectEntryRegistryProps) {
       <select
         className="bg-transparent font-semibold text-sm text-center uppercase"
         onChange={handleSelectChange}
-        value={props.value}
+        value={selectType}
       >
         {type.map((item, index) => {
           return (
