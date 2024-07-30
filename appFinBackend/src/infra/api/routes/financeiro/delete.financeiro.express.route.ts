@@ -21,16 +21,13 @@ export class DeleteFinanceiroRoute implements Route {
   }
   public getHandler(): (req: Request, res: Response) => Promise<void> {
     return async (req: Request, res: Response) => {
-      console.log('No handler')
-      console.log(req.params)
-      const { id } = req.body
+      const id = req.body.id
 
       const input: DeleteFinanceiroInputDto = {
         id,
       }
 
-      res.status(200).json(id)
-      // const output = await this.deleteFinanceiroService.execute(input)
+      const output = await this.deleteFinanceiroService.execute(input)
     }
   }
   getPath(): string {
