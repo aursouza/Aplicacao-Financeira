@@ -1,5 +1,5 @@
 # Aplicação-Financeira
-Repositório criado para a prática em grupo do Curso Formação Dev da Cod3r.
+Repositório criado para a prática em grupo do Curso Formação Dev da Cod3r (https://escola.formacao.dev).
 
 Este Repositório contou com a contribuição dos seguintes programadores: 
 https://github.com/WeltonAM
